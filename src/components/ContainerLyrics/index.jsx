@@ -2,14 +2,19 @@
 import React, { useState } from 'react';
 import FormLyrics from '../FormLyrics';
 import ApiService from '../../utils/ApiService';
+import Loader from '../Loader';
 
 function ContainerLyrics() {
   const [lyrics, setLyrics] = useState('');
+  const [hiddenLoader, setHiddenLoader] = useState(true);
 
   function showLyrics(artist, music) {
+    setLyrics('');
+    setHiddenLoader(false);
     ApiService.getLyrics(artist, music)
       .then(
         (response) => {
+          setHiddenLoader(true);
           if(response.lyrics !== ''){
             setLyrics(response.lyrics);
           } else {
@@ -19,6 +24,7 @@ function ContainerLyrics() {
       )
       .catch(
         (error) => {
+          setHiddenLoader(true);
           setLyrics('Desculpe, não encontramos a música.');
           console.log(error);
         }
@@ -28,7 +34,8 @@ function ContainerLyrics() {
   return(
   <>
     <FormLyrics onSubmit={showLyrics}></FormLyrics>
-    <p>{lyrics}</p>
+    <Loader hidden={hiddenLoader} />
+    <pre>{lyrics}</pre>
   </>
   )
 }
