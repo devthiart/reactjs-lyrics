@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import FormLyrics from '../FormLyrics';
 import ApiService from '../../utils/ApiService';
 import Loader from '../Loader';
+import { PreLyrics } from './styles';
 
 function ContainerLyrics() {
   const [lyrics, setLyrics] = useState('');
@@ -35,7 +36,7 @@ function ContainerLyrics() {
   <>
     <FormLyrics onSubmit={showLyrics}></FormLyrics>
     <Loader hidden={hiddenLoader} />
-    <pre>{lyrics}</pre>
+    <PreLyrics>{lyrics}</PreLyrics>
   </>
   )
 }

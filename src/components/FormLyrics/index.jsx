@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Form, Input, Button } from './styles';
 
 // eslint-disable-next-line react/prop-types
 function FormLyrics({ onSubmit }) {
@@ -20,9 +21,9 @@ function FormLyrics({ onSubmit }) {
   }
 
   return(
-    <form onSubmit={_submitForm}>
+    <Form onSubmit={_submitForm}>
       <label>Artista</label>
-      <input 
+      <Input 
         type="text"
         name="Artista"
         value={artist}
@@ -30,15 +31,15 @@ function FormLyrics({ onSubmit }) {
         required
       />
       <label>Música</label>
-      <input 
+      <Input 
         type="text"
         name="Musica"
         value={music}
         onChange={_handleMusic}
         required
       />
-      <button type="submit">Enviar</button>
-    </form>
+      <Button type="submit">Pesquisar</Button>
+    </Form>
   );
 }
 

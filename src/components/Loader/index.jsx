@@ -4,7 +4,7 @@ const Loader = styled.div`
   animation: spin 2s linear infinite;
   border: 5px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 5px solid #34db5e; 
+  border-top: 5px solid var(--primary); 
   margin-left: auto;
   margin-right: auto; 
   height: 25px;

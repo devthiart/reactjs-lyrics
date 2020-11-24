@@ -1,3 +1,9 @@
+:root {
+  --primary: #63FF9C;
+  --secondary: #67EB97;
+  --button: #36C96C;
+}
+
 .App {
   text-align: center;
 }
