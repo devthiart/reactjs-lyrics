@@ -3,13 +3,17 @@ import React, { useState } from 'react';
 import FormLyrics from '../FormLyrics';
 import ApiService from '../../utils/ApiService';
 import Loader from '../Loader';
-import { PreLyrics } from './styles';
+import { SectionLyrics, PreLyrics } from './styles';
 
 function ContainerLyrics() {
   const [lyrics, setLyrics] = useState('');
   const [hiddenLoader, setHiddenLoader] = useState(true);
+  const [Music, setMusic] = useState('');
+  const [Artist, setArtist] = useState('');
 
   function showLyrics(artist, music) {
+    setMusic('');
+    setArtist('');
     setLyrics('');
     setHiddenLoader(false);
     ApiService.getLyrics(artist, music)
@@ -17,8 +21,12 @@ function ContainerLyrics() {
         (response) => {
           setHiddenLoader(true);
           if(response.lyrics !== ''){
+            setMusic(music);
+            setArtist(artist);
             setLyrics(response.lyrics);
           } else {
+            setMusic('');
+            setArtist('');
             setLyrics('Desculpe, não encontramos a música.');
           }
         }
@@ -26,6 +34,8 @@ function ContainerLyrics() {
       .catch(
         (error) => {
           setHiddenLoader(true);
+          setMusic('');
+          setArtist('');
           setLyrics('Desculpe, não encontramos a música.');
           console.log(error);
         }
@@ -36,7 +46,11 @@ function ContainerLyrics() {
   <>
     <FormLyrics onSubmit={showLyrics}></FormLyrics>
     <Loader hidden={hiddenLoader} />
-    <PreLyrics>{lyrics}</PreLyrics>
+    <SectionLyrics>
+      <h2>{Music}</h2>
+      <h4>{Artist}</h4>
+      <PreLyrics>{lyrics}</PreLyrics>
+    </SectionLyrics>
   </>
   )
 }
