@@ -18,6 +18,8 @@ function FormLyrics({ onSubmit }) {
     event.preventDefault();
 
     onSubmit(artist, music);
+    setArtist('');
+    setMusic('');
   }
 
   return(
