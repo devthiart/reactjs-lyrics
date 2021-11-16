@@ -50,7 +50,7 @@ function ContainerLyrics() {
       .then(
         (response) => {
           dispatch({ type: ACTIONS.TOGGLE_HIDDEN_LOADER });
-          if(response.lyrics !== ''){
+          if(response.lyrics != undefined){
             dispatch({ 
               type: ACTIONS.SET_MUSIC,
               payload: {
@@ -73,7 +73,7 @@ function ContainerLyrics() {
         (error) => {
           console.log(error);
         }
-      )
+      );
   }
 
   return(
